@@ -53,8 +53,7 @@ export default function AdminBlogCreate() {
   // submit to create blog api
   const handleSubmit = async (e) => {
     try {
-      const response = await (`${process.env.API}/admin/blog`,
-      {
+      const response = await fetch(`${process.env.API}/admin/blog`, {
         method: "POST",
         headers: {
           "Content-Type": "application-json",
@@ -66,12 +65,12 @@ export default function AdminBlogCreate() {
         router.push("/dashboard/admin");
         toast.success("Blog create successfully");
       } else {
-        const dataError = await response.json();
+        const errorData = await response.json();
         toast.error(errorData.err);
       }
     } catch (err) {
       console.error(err);
-      toast.error("An error occured. Try again.");
+      toast.error("An error occurred while creating the blog");
     }
   };
 
