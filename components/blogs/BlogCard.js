@@ -1,6 +1,7 @@
 import Link from "next/link";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import BlogLike from "@/components/blogs/BlogLike";
 
 dayjs.extend(relativeTime);
 
@@ -45,7 +46,7 @@ export default function BlogCard({ blog }) {
           <small className="text-muted">
             Posted: {dayjs(blog.createdAt).fromNow()}
           </small>
-          <small className="text-muted">❤️ {blog.likes.length} likes</small>
+          <BlogLike blog={blog} />
         </div>
       </div>
     </div>
